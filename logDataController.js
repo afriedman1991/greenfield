@@ -4,8 +4,8 @@ var Log = require('./logDataModel.js')
 var findAllLogs = Q.nbind(Log.find, Log);
 var createLog = Q.nbind(Log.create, Log);
 
-module.eports = {
-
+module.exports = {
+  //fatch data from database
   allLogs: function (req, res, next) {
     findAllLogs({})
     .then(function (logs) {
@@ -15,7 +15,7 @@ module.eports = {
       next(error);
     });
   },
-
+  //save data to the table
   newLog: function (req, res, next) {
     return createLog({
       user: req.body.user,
