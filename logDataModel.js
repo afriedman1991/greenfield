@@ -1,4 +1,4 @@
-var mongose = require('mongoose');
+var mongoose = require('mongoose');
 
 var LogDataSchema = new mongoose.Schema({
   user: String,
