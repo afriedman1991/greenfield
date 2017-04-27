@@ -1,4 +1,4 @@
-var app = angular.module('myApp',[])
+var app = angular.module('myApp.userInput',[])
 //may seperate controller and factory to adhere to the style guide
 
 
@@ -21,5 +21,6 @@ var app = angular.module('myApp',[])
 
 .controller("submitController",function($scope,$http,postToServerFactory){
    $scope.userInput = {};
+   
    $scope.submitInput = postToServerFactory.postToServer();
  })
