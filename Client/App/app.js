@@ -4,7 +4,7 @@ var app = angular.module("moody",['moody.userInput',"ngRoute"])
 .config(function($routeProvider){
   $routeProvider
   .when("/",{
-     templateUrl : "../../index.html"
+     templateUrl : "../index.html"
   })
   // .when("/",{
   //   templateUrl : "App/Home/home.html"
