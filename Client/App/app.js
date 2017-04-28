@@ -1,12 +1,22 @@
-var app = angular.module("app",['moody.userInput',"ngRoute"]);
-//include angular router link in the html
+angular.module('app',['ngRoute', 'app.home'])
 
-app.config(function($routeProvider){
+.config(function($routeProvider) {
   $routeProvider
-  // .when("/",{
-  //    templateUrl : "../index.html"
-  // })
-  .when("/",{
-    templateUrl : "App/home/home.html"
+  .when('/', {
+    templateUrl: 'app/home/home.html',
+    controller: 'homeController'
+  })
+  .when('/home', {
+    templateUrl: 'app/home/home.html',
+    controller: 'homeController'
+  })
+  .when('/data', {
+    templateUrl: 'app/data/data.html',
+  })
+  .when('/login', {
+    templateUrl: 'app/login/login.html',
+  })
+  .when('/signup', {
+    templateUrl: 'app/signup/signup.html',
   })
 })
