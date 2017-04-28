@@ -1,23 +1,11 @@
-var express = require('express');
-var app = express();
-//var http = require('http');
-//var request = require("request");
-var bodyParser = require("body-parser");//Maybe I do not need this line.
+var logDataModel = require('../logData/log-data.model.js');//check this path!!!!!
+var logDataController = require('../logData/log-data.controller.js')//check this path!!!!!
+var helpers = require('./helpers.js'); 
 
-var db = require('./db.js');//check this path!!!!!
-var logDataModel = require('./logDataModel.js');//check this path!!!!!
-var logDataController = require('./logDataController.js')//check this path!!!!!
+module.exports = function (app, express) {
+	app.post('/db', logDataController.newLog);
+	app.get('/', logDataController.allLogs);
 
-//middle ware
-app.use(bodyParser.json());//Maybe I do not need this line
-app.use(express.static(__dirname + '/client'));//check this path!!!!!!
-
-app.post('/db', logDataController.newLog);
-app.get('/', logDataController.allLogs);
-
-//if type other address, console log error messages
-app.get("*", function(req, res) {
-	res.end("Error 404! HAHAHAHAHA, please Type: loclhost:8888");
-})
-
-module.exports = app;
+  app.use(helpers.errorLogger);
+  app.use(helpers.errorHandler);
+}

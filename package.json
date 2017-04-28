@@ -19,7 +19,9 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
     "mongoose": "^4.9.6",
+    "morgan": "^1.8.1",
     "q": "^1.5.0"
   }
 }

@@ -1,5 +1,5 @@
 var Q = require('q');
-var Log = require('./logDataModel.js')
+var Log = require('./log-data.model.js')
 
 var findAllLogs = Q.nbind(Log.find, Log);
 var createLog = Q.nbind(Log.create, Log);
@@ -17,6 +17,7 @@ module.exports = {
   },
   //save data to the table
   newLog: function (req, res, next) {
+    console.log(req.body)
     return createLog({
       user: req.body.user,
       level: req.body.level,
