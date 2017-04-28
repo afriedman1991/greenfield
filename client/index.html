@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-
+<html ng-app="app">
   <head>
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 
-  <body  ng-app = "moody">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+</head>
+  <body>
     <h1>Welcome to Moody App!</h1>
     <div id='container'>
       <nav class="navigation">
@@ -26,12 +29,8 @@
       </nav>
     </div>
     <div class="sumbitForm">
-        <form ng-controller="submitController">
-
-        	  <input type="text" ng-model='options.user' placeholder="Username"></input>
-
-              <br>
-
+      <form ng-controller="submitController">
+        <input type="text" ng-model='options.user' placeholder="Username"></input> {{options.user}}
             <label for='levelSelect'> Level: </label>
             <select name='levelSelect' ng-model='options.level'>
               <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
@@ -41,14 +40,9 @@
             <select name='moodSelect' ng-model='options.mood'>
               <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
             </select>
-
-              <br></br>
-
         <input type="submit"></input>
-        </form type="submit">
-
-        <script src="./App/app.js"></script>
+      </form type="submit">
     </div>
-
-</body>
+    <script src="./App/home/home.controller.js"></script>
+  </body>
 </html>
