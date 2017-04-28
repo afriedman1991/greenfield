@@ -1,6 +1,5 @@
-angular.module('app',[])
+angular.module('app.home',[])
 //may seperate controller and factory to adhere to the style guide
-
 
 // .factory("postToServerFactory",function($scope,$http){
 //   $scope.postToServer = function(){
@@ -17,7 +16,8 @@ angular.module('app',[])
 //   }
 // })
 
-.controller("submitController",function($scope,$http) {
+.controller('homeController', function($scope, $http) {
+  console.log('tessssssst')
   $scope.options = {
      level : null,
      availableLevels: [3, 2, 1, 0, -1, -2, -3],

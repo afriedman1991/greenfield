@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 
-
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 </head>
   <body>
@@ -19,30 +18,15 @@
     <div id='container'>
       <nav class="navigation">
         <ul>
-          <li>
-              <a href="#/home">Home</a>
-          </li>
-           <li>
-              <a href="#/data">Data</a>
-          </li>
+          <li><a href="#/home">Home</a></li>
+          <li><a href="#/data">Data</a></li>
+          <li><a href="#/login">Login</a></li>
+          <li><a href="#/signup">Sign up</a></li>
         </ul>
       </nav>
     </div>
-    <div class="sumbitForm">
-      <form ng-controller="submitController">
-        <input type="text" ng-model='options.user' placeholder="Username"></input> {{options.user}}
-            <label for='levelSelect'> Level: </label>
-            <select name='levelSelect' ng-model='options.level'>
-              <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
-            </select>
-              <br/>
-            <label for='moodSelect'> Mood: </label>
-            <select name='moodSelect' ng-model='options.mood'>
-              <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
-            </select>
-        <input type="submit"></input>
-      </form type="submit">
-    </div>
-    <script src="./App/home/home.controller.js"></script>
+    <div ng-view><div>
+    <script src="./app/home/home.controller.js"></script>
+    <script src="./app/app.js"></script>
   </body>
 </html>
