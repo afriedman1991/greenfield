@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var LogDataSchema = new mongoose.Schema({
-  user: String,
+  username: String,
   level: Number,
   mood: String,
   note: String,
