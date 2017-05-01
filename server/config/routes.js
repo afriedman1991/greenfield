@@ -7,7 +7,7 @@ module.exports = function (app, express) {
   app.post('/db', logDataController.newLog);
   app.get('/', logDataController.allLogs);
   app.post('/signup', userDataController.newUser);
-  app.post('/signin', userDataController.signin;
+  app.post('/signin', userDataController.signin);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);

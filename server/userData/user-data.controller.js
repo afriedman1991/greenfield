@@ -1,5 +1,5 @@
 var Q = require('q');
-var User = require('/user-data.model.js');
+var User = require('./user-data.model.js');
 
 var createUser = Q.nbind(User.create, User);
 
