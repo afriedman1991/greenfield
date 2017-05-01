@@ -14,16 +14,20 @@
 </head>
   <body>
     <h1>Welcome to Moody App!</h1>
-    <div id='container'>
-      <nav class="navigation">
-        <ul>
-          <li><a href="#/home">Home</a></li>
-          <li><a href="#/data">Data</a></li>
-          <li><a href="#/login">Login</a></li>
-          <li><a href="#/signup">Sign up</a></li>
-        </ul>
-      </nav>
+
+    <div id='container' ng-cloak>
+        <md-content class="md-padding">
+            <md-nav-bar
+              md-selected-nav-item="currentNavItem"
+              nav-bar-aria-label="navigation links">
+              <md-nav-item md-nav-href="#/home" name="home">Home</md-nav-item>
+              <md-nav-item md-nav-href="#/data" name="data">Data</md-nav-item>
+              <md-nav-item md-nav-href="#/login" name="login">Login</md-nav-item>
+              <md-nav-item md-nav-href="#/signup" name="signup">Sign up</md-nav-item>
+            </md-nav-bar>
+      </md-content>
     </div>
+
     <div ng-view><div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
