@@ -6,7 +6,7 @@ angular.module('app.data',[])
     // Should modularize this
     $http({
       method: 'GET',
-      url: '/',
+      url: '/data'
     })
     .then(function(resp) {
       console.log(resp.data);

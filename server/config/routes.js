@@ -5,7 +5,7 @@ var helpers = require('./helpers.js');
 
 module.exports = function (app, express) {
   app.post('/db', logDataController.newLog);
-  app.get('/', logDataController.allLogs);
+  app.get('/data', logDataController.allLogs);
   app.post('/signup', userDataController.newUser);
   app.post('/signin', userDataController.signin);
 
