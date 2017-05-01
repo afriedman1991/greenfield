@@ -15,8 +15,7 @@ angular.module('app',['ngRoute', 'ngMaterial', 'app.home', 'app.data', 'app.logi
     controller: 'dataController'
   })
   .when('/login', {
-    templateUrl: 'app/login/login.html',
-    controller: ''
+    templateUrl: 'app/login/login.html'
   })
   .when('/signup', {
     templateUrl: 'app/signup/signup.html',

@@ -24,5 +24,27 @@ angular.module('app.home',[])
      mood : null,
      availableMoods: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
    };
-  //  $scope.submitInput = postToServerFactory.postToServer();
+
+  $scope.submitInput = function() {
+    let username = $scope.username;
+    let level = parseInt($scope.options.level, 10);
+
+    console.log('username', username);
+    console.log('level', level);
+    console.log(typeof level);
+
+    $http({
+      method: 'POST',
+      url: '/db',
+      data: {
+        username: username,
+        level: level
+      }
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      return resp.data;
+    });
+  }
+  // $scope.submitInput = postToServerFactory.postToServer();
  })
