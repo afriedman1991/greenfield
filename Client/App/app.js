@@ -1,4 +1,4 @@
-angular.module('app',['ngRoute', 'app.home'])
+angular.module('app',['ngRoute', 'ngMaterial', 'app.home', 'app.data', 'app.login', 'app.signup'])
 
 .config(function($routeProvider) {
   $routeProvider
@@ -12,9 +12,11 @@ angular.module('app',['ngRoute', 'app.home'])
   })
   .when('/data', {
     templateUrl: 'app/data/data.html',
+    controller: 'dataController'
   })
   .when('/login', {
     templateUrl: 'app/login/login.html',
+    controller: ''
   })
   .when('/signup', {
     templateUrl: 'app/signup/signup.html',
