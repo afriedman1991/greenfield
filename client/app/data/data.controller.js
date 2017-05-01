@@ -1,5 +1,17 @@
-var dc = angular.module('data',[])
+angular.module('app.data',[])
+.controller("dataController",function($scope, $http){
+  let userData = 'testing';
 
-.controller("dataController",function($scope){
-
+  $scope.displayTable = function() {
+    // Should modularize this
+    $http({
+      method: 'GET',
+      url: '/',
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      userData = resp.data;
+      $scope.tableGraph = userData; // temp, just to display server response
+    });
+  }
 })
