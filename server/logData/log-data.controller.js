@@ -7,6 +7,7 @@ var createLog = Q.nbind(Log.create, Log);
 module.exports = {
   //fatch data from database
   allLogs: function (req, res, next) {
+    console.log("Hello");
     findAllLogs({})
     .then(function (logs) {
       res.json(logs);
@@ -19,7 +20,7 @@ module.exports = {
   newLog: function (req, res, next) {
     console.log(req.body)
     return createLog({
-      user: req.body.user,
+      username: req.body.username,
       level: req.body.level,
       mood: req.body.mood,
       note: req.body.note,

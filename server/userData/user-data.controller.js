@@ -25,7 +25,9 @@ module.exports = {
   newUser: function (req, res, next) {
     console.log("Received User Data from client: ", req.body);
     return createUser({
-      user: req.body.user,
+      userRealName: req.body.userRealName,
+      email: req.body.email,
+      username: req.body.username,
       password: req.body.password
     })
     .fail(function (error) {
