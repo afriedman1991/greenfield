@@ -1,4 +1,4 @@
-var dc = angular.module('data',[])
+var dc = angular.module('app.data',[])
 
 .controller("dataController",function($scope){
 
