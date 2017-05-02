@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/DavidXu2017/greenfield#readme",
   "dependencies": {
+    "angular": "^1.6.4",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "jwt-simple": "^0.5.1",
