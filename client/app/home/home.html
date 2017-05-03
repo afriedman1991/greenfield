@@ -11,13 +11,13 @@
           <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
         </select>
     <label for="exampleInput">Pick a date and time:</label>
-    <!-- <input type="datetime-local" id="exampleInput" name="input" ng-model="example.value" placeholder="yyyy-MM-ddTHH:mm:" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" required />
+    <input type="datetime-local" id="exampleInput" name="input" ng-model="time" placeholder="yyyy-MM" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" />
       <div role="alert">
         <span class="error" ng-show="myForm.input.$error.required">
           Required!
         </span>
         <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
-      </div> -->
+      </div>
     <input type="submit"></input>
   </form type="submit">
 </div>

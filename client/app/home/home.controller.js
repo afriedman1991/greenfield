@@ -25,20 +25,26 @@ angular.module('app.home',[])
      availableMoods: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
    };
 
+  let currDate = new Date();
+  $scope.time = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours());
+
   $scope.submitInput = function() {
     let username = $scope.username;
     let level = parseInt($scope.options.level, 10);
+    let time = $scope.time;
 
     console.log('username', username);
     console.log('level', level);
     console.log(typeof level);
+    console.log('time is', time);
 
     $http({
       method: 'POST',
       url: '/db',
       data: {
         username: username,
-        level: level
+        level: level,
+        time: time
       }
     })
     .then(function(resp) {

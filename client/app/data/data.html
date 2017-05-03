@@ -4,6 +4,24 @@
     Display Table
   </button><br>
   {{ tableGraph }}
+  <br>
+  <input type="number" ng-model='yearToSearch' placeholder="Year to Search"></input> year: {{ yearToSearch}}<br>
+  <input type="number" ng-model='monthToSearch' placeholder="Month to Search"></input> month: {{ monthToSearch}}<br>
+  <input type="number" ng-model='dayToSearch' placeholder="Day to Search"></input> day: {{ dayToSearch}}<br>
+  <button ng-click="displayDaily()">
+    Display Daily
+  </button><br>
+  <button ng-click="displayMonthly()">
+    Display Monthly
+  </button><br>
+  {{ tableDaily }}
+  <div>
+    <ul>
+      <li ng-repeat="dates in tableDaily | orderBy: '-time'">
+        {{dates.time | date:'medium'}}
+      </li>
+    </ul>
+  </div>
 
   <nvd3 options="options" data="tempData" class="with-3d-shadow with-transitions"></nvd3>
 
