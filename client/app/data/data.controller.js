@@ -39,4 +39,42 @@ angular.module('app.data',[])
     });
   }
 
+  let currTime = new Date();
+  $scope.yearToSearch = currTime.getFullYear();
+  $scope.monthToSearch = currTime.getMonth();
+  $scope.dayToSearch = currTime.getDate();
+
+  // JS Month is 0-11, MongoDB Month is 1-12
+  // Need to add one month to query Mongo
+  $scope.displayDaily = function() {
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'GET',
+      url: `/data/${year}/${month}/${day}`,
+      // Doing below uses url: /data/?year=2017
+      // params: { year: $scope.yearToSearch}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableDaily = resp.data;
+    });
+  }
+
+  $scope.displayMonthly = function() {
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'GET',
+      url: `/data/${year}/${month}`,
+      // Doing below uses url: /data/?year=2017
+      // params: { year: $scope.yearToSearch}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableDaily = resp.data;
+    });
+  }
 })
