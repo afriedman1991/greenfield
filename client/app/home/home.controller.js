@@ -1,4 +1,6 @@
-angular.module('app.home',[])
+angular.module('app.home',['ngMaterial'])
+
+
 //may seperate controller and factory to adhere to the style guide
 
 // .factory("postToServerFactory",function($scope,$http){
@@ -16,7 +18,14 @@ angular.module('app.home',[])
 //   }
 // })
 
-.controller('homeController', function($scope, $http) {
+.controller('homeController', function($scope, $http, $mdDialog) {
+  //Menu controls
+  var originatorEv;
+    this.openMenu = function($mdMenu, ev) {
+      originatorEv = ev;
+      $mdMenu.open(ev);
+    };
+
   console.log('tessssssst')
   $scope.options = {
      level : null,
@@ -52,5 +61,6 @@ angular.module('app.home',[])
       return resp.data;
     });
   }
+  originatorEv = null;
   // $scope.submitInput = postToServerFactory.postToServer();
  })
