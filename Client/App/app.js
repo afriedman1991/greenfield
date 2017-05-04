@@ -15,13 +15,23 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
     controller: 'dataController'
   })
   .when('/login', {
-    templateUrl: 'app/login/login.html'
+    templateUrl: 'app/login/login.html',
+    controller: 'loginController'
   })
   .when('/signup', {
     templateUrl: 'app/signup/signup.html',
+    controller: 'signupController'
   })
   .when('/text', {
     templateUrl : 'app/text/text.html',
     controller: 'textController'
   })
 })
+.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+    if (AuthService.isLoggedIn() === false) {
+      $location.path('/login');
+    }
+  });
+});
