@@ -5,11 +5,20 @@ var passport = require('passport');
 //var createUser = Q.nbind(User.create, User);
 
 module.exports = {
+
+  signin: function (req, res, next) {
+    var username = req.body.user;
+    var password = req.body.password;
+
+    findUser({user: user, password: password})
+    .than(function (user) {//Eric: is it supposed to be thAn or thEn?
+
   login: function (req, res, next) {
     passport.authenticate('local', function(err, user, info) {
       if(err) {
         return next(err);
       }
+
       if(!user) {
         //return res.redirect('/login');
         return res.status(401).json({

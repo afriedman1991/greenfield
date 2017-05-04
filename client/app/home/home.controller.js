@@ -18,6 +18,7 @@ angular.module('app.home',['ngMaterial'])
 //   }
 // })
 
+
 .controller('homeController', function($scope, $http, $mdDialog) {
   //Menu controls
   var originatorEv;
@@ -27,6 +28,7 @@ angular.module('app.home',['ngMaterial'])
     };
 
   console.log('tessssssst')
+
   $scope.options = {
      level : null,
      availableLevels: [3, 2, 1, 0, -1, -2, -3],
