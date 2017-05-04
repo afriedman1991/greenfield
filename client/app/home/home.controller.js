@@ -17,7 +17,7 @@ angular.module('app.home',[])
 // })
 
 .controller('homeController', function($scope, $http) {
-  console.log('tessssssst')
+
   $scope.options = {
      level : null,
      availableLevels: [3, 2, 1, 0, -1, -2, -3],

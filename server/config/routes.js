@@ -12,6 +12,7 @@ module.exports = function (app, express) {
   app.get('/data/:year/:month/:day', logDataController.daily);
   app.get('/data/:year/:month', logDataController.monthly);
   app.post('/text', textController.sendText);
+  app.post('/recieve',textController.recieveText);
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 }
