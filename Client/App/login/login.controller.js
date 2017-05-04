@@ -14,14 +14,14 @@ angular.module('app.login', [])
   	//handle success
   	.then(function () {
   		$location.path('/');
-  		$scope.disable = false;
+  		$scope.disabled = false;
   		$scope.user = {};
   	})
   	//handle error
   	.catch(function() {
   		$scope.error = true;
+      $scope.disabled = false;
   		$scope.errorMessage = "I'm sorry, your username or password may not currect";
-  		$scope.disable = true;
   		$scope.user = {};
   	});
   };

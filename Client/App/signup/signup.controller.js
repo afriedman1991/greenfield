@@ -20,7 +20,7 @@ angular.module('app.signup', [])
   		.catch(function () {
   			$scope.error = true;
   			$scope.errorMessage = "User name is already exist, please try again!";
-  			$scope.disabled = true;
+  			$scope.disabled = false;
   			$scope.user = {};
   		});
   	};
