@@ -4,23 +4,31 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
   $routeProvider
   .when('/', {
     templateUrl: 'app/home/home.html',
-    controller: 'homeController'
+    controller: 'homeController',
+    requireAuth: true
   })
   .when('/home', {
     templateUrl: 'app/home/home.html',
-    controller: 'homeController'
+    controller: 'homeController',
+    requireAuth: true
   })
   .when('/data', {
     templateUrl: 'app/data/data.html',
-    controller: 'dataController'
+    controller: 'dataController',
+    requireAuth: true
   })
   .when('/login', {
     templateUrl: 'app/login/login.html',
-    controller: 'loginController'
+    controller: 'loginController',
+    requireAuth: false
   })
   .when('/signup', {
     templateUrl: 'app/signup/signup.html',
-    controller: 'signupController'
+    controller: 'signupController',
+    requireAuth: false
+  })
+  .otherwise({
+    redirectTo: '/'
   })
   .when('/text', {
     templateUrl : 'app/text/text.html',
@@ -30,8 +38,10 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
 .run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
-    if (AuthService.isLoggedIn() === false) {
+      console.log(next)
+    if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
       $location.path('/login');
+      $route.reload();
     }
   });
 });
