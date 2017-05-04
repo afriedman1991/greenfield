@@ -27,12 +27,13 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
     controller: 'signupController',
     requireAuth: false
   })
-  .otherwise({
-    redirectTo: '/'
-  })
   .when('/text', {
     templateUrl : 'app/text/text.html',
-    controller: 'textController'
+    controller: 'textController',
+    requireAuth: true
+  })
+  .otherwise({
+    redirectTo: '/'
   })
 })
 .run(function ($rootScope, $location, $route, AuthService) {
