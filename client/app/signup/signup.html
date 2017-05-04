@@ -1,4 +1,5 @@
-<div id='signup' layout="column" layout-padding="" layout-align="center center" ng-cloak="" class="inputdemoIcons">
+<div id='signup' layout="column" layout-padding="" layout-align="center center" ng-cloak="" class="inputdemoIcons" g-controller="signupController">
+
   <h1>Sign Up</h1>
   <br>
   <md-content class="md-no-momentum">
@@ -23,6 +24,12 @@
       <md-icon style="display:inline-block;"></md-icon>
       <input ng-model="user.password" type="password" placeholder="Password">
     </md-input-container>
+
+    <p ng-show='error'>{{errorMessage}}</p>
+    <div>
+      <md-button type="submit" layout-align="center center" ng-disabled="disabled" ng-click="register()">Register</md-button>
+    </div>
+
   </md-content>
-  <md-button type="submit" layout-align="center center">Submit</md-button>
+
 </div>
