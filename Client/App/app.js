@@ -35,13 +35,13 @@ angular.module('app',['ngRoute', 'ngMaterial', 'chart.js','app.home', 'app.data'
     controller: 'textController'
   })
 })
-.run(function ($rootScope, $location, $route, AuthService) {
-  $rootScope.$on('$routeChangeStart',
-    function (event, next, current) {
-      console.log(next)
-    if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
-      $location.path('/login');
-      $route.reload();
-    }
-  });
-});
+// .run(function ($rootScope, $location, $route, AuthService) {
+//   $rootScope.$on('$routeChangeStart',
+//     function (event, next, current) {
+//       console.log(next)
+//     if (next.$$route.requireAuth && AuthService.isLoggedIn() === false) {
+//       $location.path('/login');
+//       $route.reload();
+//     }
+//   });
+//});
