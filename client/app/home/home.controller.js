@@ -16,7 +16,6 @@ angular.module('app.home',['ngMaterial'])
 //   }
 // })
 
-
 .controller('homeController', ['$scope', '$http', '$mdDialog', 'AuthService',function($scope, $http, $mdDialog, AuthService) {
   //Menu controls
   var originatorEv;
@@ -26,29 +25,39 @@ angular.module('app.home',['ngMaterial'])
     };
 
   console.log('tessssssst')
-
   $scope.options = {
-     level : null,
-     availableLevels: [3, 2, 1, 0, -1, -2, -3],
-     mood : null,
-     availableMoods: ['sentiment_very_dissatisfied', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_satisfied', 'sentiment_very_satisfied'],
-     word: null,
-     words: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
-   };
+   level : null,
+   availableLevels: [3, 2, 1, 0, -1, -2, -3],
+   mood : null,
+   availableMoods: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
+ };
+
+  // $scope.options = {
+  //    level : null,
+  //    availableLevels: [3, 2, 1, 0, -1, -2, -3],
+  //    mood : null,
+  //    availableMoods: ['sentiment_very_dissatisfied', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_satisfied', 'sentiment_very_satisfied'],
+  //    word: null,
+  //    words: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
+  //  };
 
   let currDate = new Date();
-  $scope.time = new Date(currDate.getHours());
+  $scope.time = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours());
+
 
   $scope.submitInput = function() {
     let username = AuthService.getUser();
     console.log("My username is: ", username);
     //let username = $scope.username;
     let level = parseInt($scope.options.level, 10);
+    let mood = $scope.options.mood;
     let time = $scope.time;
 
     console.log('username', username);
     console.log('level', level);
     console.log(typeof level);
+    console.log('mood', mood);
+    console.log(typeof mood)
     console.log('time is', time);
 
     $http({
@@ -69,4 +78,3 @@ angular.module('app.home',['ngMaterial'])
   // $scope.submitInput = postToServerFactory.postToServer();
 
  }])
-

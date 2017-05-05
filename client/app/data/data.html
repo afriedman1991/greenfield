@@ -1,5 +1,103 @@
 <div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
   <h2>Your Data Graphs</h2>
+<h3>Data</h
+<div>
+  <button ng-click="displayTable()">
+    Display Table
+  </button><br>
+  {{ tableGraph }}
+  <br>
+  <input type="number" ng-model='yearToSearch' placeholder="Year to Search"></input> year: {{ yearToSearch}}<br>
+  <input type="number" ng-model='monthToSearch' placeholder="Month to Search"></input> month: {{ monthToSearch}}<br>
+  <input type="number" ng-model='dayToSearch' placeholder="Day to Search"></input> day: {{ dayToSearch}}<br>
+  <button ng-click="displayDaily()">
+    Display Daily
+  </button><br>
+  {{ tableDaily }}<br>
+  <button ng-click="displayMonthly()">
+    Display Monthly
+  </button><br>
+  {{ tableMonthly }}<br>
+
+  <br>
+  <button ng-click="displayDailyAverages()">
+    Display Daily Averages
+  </button><br>
+  <div ng-repeat="day in dailyAverages">
+    <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
+    <!-- <div ng-repeat="v in day.times | orderBy: 'time'"> -->
+    <!-- <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="day"
+      chart-labels="labels" chart-series="series" chart-options="options"
+      chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas> -->
+    <div ng-repeat="v in day.times">
+      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
+    </div><br>
+  </div>
+  <br>
+
+  <button ng-click="displayWeeklyAverages()">
+    Display Weekly Averages
+  </button><br>
+  <div ng-repeat="day in weeklyAverages">
+    <div>{{day.times[0].time | date:'MMMM, d'}} - {{ day.times[day.times.length - 1].time | date:'MMMM, d'}} Average Level: {{day.averageLevel}} </div>
+    <div ng-repeat="v in day.times">
+      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
+    </div><br>
+  </div>
+  <br>
+
+  <br>
+  <button ng-click="displayDailyGraphs()">
+    Display Daily Graphs
+  </button><br>
+  <div ng-repeat="day in dailyGraphs">
+    <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
+    <!-- <div ng-repeat="v in day.times | orderBy: 'time'"> -->
+    <!-- <canvas id="line" width="{{width}}"
+      class="chart chart-line" chart-data="day"
+      chart-labels="labels" chart-series="series" chart-options="options"
+      chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas> -->
+    <div ng-repeat="v in day.times">
+      {{ v.time | date: 'medium' }} - Level: {{ v.level }}
+    </div><br>
+  </div>
+  <br>
+
+  <!-- <button ng-click="displayWeeklyAverages()">
+    Display Monthly Averages
+  </button><br>
+  {{ monthlyAverages }} -->
+  <!-- Template for grouping by (IGNORE FOR NOW)-->
+  <div ng-repeat="(key, value) in tableWeekly">
+    <div>Week: {{ key }}</div>
+    <div ng-repeat="v in value | orderBy: 'time'" >
+      {{ v.time | date:'medium'}}
+      <canvas id="line" width="{{width}}"
+        class="chart chart-line" chart-data="data"
+        chart-labels="labels" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+    </div>
+  </div>
+  <!-- {{ tableDaily }} -->
+  <div>
+    <ul>
+      <li ng-repeat="dates in tableDaily | orderBy: '-time'">
+        {{dates.time | date:'medium'}}
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <ul>
+      <li ng-repeat="dates in tableDaily | orderBy: '-time'">
+        {{dates.time | date:'medium'}}
+      </li>
+    </ul>
+  </div>
 
   <!-- TEMP: navigation between graphs -->
   <div id='container' ng-cloak>
