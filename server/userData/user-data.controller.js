@@ -9,9 +9,7 @@ module.exports = {
   // signin: function (req, res, next) {
   //   var username = req.body.user;
   //   var password = req.body.password;
-  //
-  //   findUser({user: user, password: password})
-  //   .then(function (user) {//Eric: is it supposed to be thAn or thEn?
+
 
   login: function (req, res, next) {
     passport.authenticate('local', function(err, user, info) {
