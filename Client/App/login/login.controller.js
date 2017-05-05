@@ -1,6 +1,6 @@
 angular.module('app.login', [])
 
-.controller('loginController', ['$scope', '$location', 'AuthService', function($scope, $location, AuthService) {
+.controller('loginController', ['$scope', '$location', '$rootScope', 'AuthService', function($scope, $location, $rootScope, AuthService) {
   
   $scope.login = function () {
 
@@ -16,6 +16,9 @@ angular.module('app.login', [])
   		$location.path('/');
   		$scope.disabled = false;
   		$scope.user = {};
+      //hide login button and signup button when login successfully
+      $rootScope.loginButtonFunc();
+      $rootScope.signupButtonFunc();
   	})
   	//handle error
   	.catch(function() {
