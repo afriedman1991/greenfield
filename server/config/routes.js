@@ -18,13 +18,11 @@ module.exports = function (app, express) {
   app.get('/data/:year/:month', logDataController.monthly);
   app.post('/text', textController.sendText);
 
+
   app.post('/recieve',textController.recieveText);
   app.get('/data/average/level/daily/:year', logDataController.dailyAverages);
   app.get('/data/average/level/weekly/:year', logDataController.weeklyAverages);
-
-
   app.post('/message',textController.recieveText);
-
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 }
