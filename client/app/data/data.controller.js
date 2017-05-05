@@ -50,14 +50,17 @@ angular.module('app.data',[])
   // JS Month is 0-11, MongoDB Month is 1-12
   // Need to add one month to query Mongo
   $scope.displayDaily = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     let year = $scope.yearToSearch;
     let month = $scope.monthToSearch + 1;
     let day = $scope.dayToSearch;
     $http({
-      method: 'GET',
+      method: 'POST',
       url: `/data/${year}/${month}/${day}`,
       // Doing below uses url: /data/?year=2017
       // params: { year: $scope.yearToSearch}
+      data: {username: username}
     })
     .then(function(resp) {
       console.log('resp is', resp.data);
@@ -66,12 +69,15 @@ angular.module('app.data',[])
   }
 
   $scope.displayMonthly = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     let year = $scope.yearToSearch;
     let month = $scope.monthToSearch + 1;
     let day = $scope.dayToSearch;
     $http({
-      method: 'GET',
+      method: 'POST',
       url: `/data/${year}/${month}`,
+      data: {username: username}
     })
     .then(function(resp) {
       console.log('resp is', resp.data);
@@ -97,10 +103,13 @@ angular.module('app.data',[])
   }
 
   $scope.displayDailyAverages = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     let year = $scope.yearToSearch;
     $http({
-      method: 'GET',
-      url: `data/average/level/daily/${year}`
+      method: 'POST',
+      url: `data/average/level/daily/${year}`,
+      data: {username: username}
     })
     .then(function(resp) {
       console.log(resp.data);
@@ -109,10 +118,13 @@ angular.module('app.data',[])
   }
 
   $scope.displayWeeklyAverages = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     let year = $scope.yearToSearch;
     $http({
-      method: 'GET',
-      url: `data/average/level/weekly/${year}`
+      method: 'POST',
+      url: `data/average/level/weekly/${year}`,
+      data: {username: username}
     })
     .then(function(resp) {
       console.log(resp.data);
@@ -121,10 +133,13 @@ angular.module('app.data',[])
   }
 
   $scope.displayDailyGraphs = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     let year = $scope.yearToSearch;
     $http({
-      method: 'GET',
-      url: `data/average/level/daily/${year}`
+      method: 'POST',
+      url: `data/average/level/daily/${year}`,
+      data: {username: username}
     })
     .then(function(resp) {
       console.log(resp.data);
