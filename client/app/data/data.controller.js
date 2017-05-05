@@ -72,12 +72,76 @@ angular.module('app.data',[])
     $http({
       method: 'GET',
       url: `/data/${year}/${month}`,
-      // Doing below uses url: /data/?year=2017
-      // params: { year: $scope.yearToSearch}
     })
     .then(function(resp) {
       console.log('resp is', resp.data);
-      $scope.tableDaily = resp.data;
+      // let logs = resp.data.filter(elem => elem.day === 2)
+      // .map(elem => elem.time);
+
+      // Grouping by week on server, requires underscore
+      // let test = _.groupBy(resp.data, elem => elem.week);
+      // console.log(test);
+      //
+      // for (var week in test) {
+      //   if (test.hasOwnProperty(week)) {
+      //     console.log(`Week ${week}`);
+      //     console.log(test[week]);
+      //   } else {
+      //     console.log('uhh');
+      //   }
+      // }
+      // $scope.tableMonthly = test;
+
+      $scope.tableMonthly = resp.data;
     });
+  }
+
+  $scope.displayDailyAverages = function() {
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'GET',
+      url: `data/average/level/daily/${year}`
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      $scope.dailyAverages = resp.data;
+    })
+  }
+
+  $scope.displayWeeklyAverages = function() {
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'GET',
+      url: `data/average/level/weekly/${year}`
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      $scope.weeklyAverages = resp.data;
+    })
+  }
+
+  $scope.displayDailyGraphs = function() {
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'GET',
+      url: `data/average/level/daily/${year}`
+    })
+    .then(function(resp) {
+      console.log(resp.data);
+      let final = [];
+      let weekly = _.groupBy(resp.data, elem => elem._id.week);
+      for (var week in weekly) {
+        let weekLevels = _.pluck(weekly[week], 'averageLevel');
+        console.log('weekLevels', weekLevels);
+        // let day = weekly[week];
+        // console.log('day is', day);
+        // let date = new Date(day._id.year, day._id.month, day._id.day);
+        weekly[week]['weeklyLevels'] = [weekLevels];
+        // weekly['weeklyLevels'] = weekLevels;
+      }
+
+      console.log('dailyGraphs', weekly);
+      $scope.dailyGraphs = resp.data;
+    })
   }
 }])
