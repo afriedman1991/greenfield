@@ -5,7 +5,7 @@ var userDataController = require('../userData/user-data.controller.js');
 var textController = require('../textData/text-data.controller.js');
 var helpers = require('./helpers.js');
 
-var helpers = require('./helpers.js'); 
+var helpers = require('./helpers.js');
 
 
 module.exports = function (app, express) {
@@ -17,7 +17,7 @@ module.exports = function (app, express) {
   app.get('/data/:year/:month/:day', logDataController.daily);
   app.get('/data/:year/:month', logDataController.monthly);
   app.post('/text', textController.sendText);
-  app.post('/recieve',textController.recieveText);
+  app.post('/message',textController.recieveText);
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 }
