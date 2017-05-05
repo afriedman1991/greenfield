@@ -1,7 +1,7 @@
 angular.module('app.data',[])
 
-.controller("dataController",function($scope, $http) {
-
+.controller("dataController",['$scope', '$http', 'AuthService', function($scope, $http, AuthService) {
+  //console.log($scope.user.username)
    // angular-charts data
    $scope.labels = ["8:00", "9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00"];
    $scope.series = ['Level'];
@@ -30,9 +30,12 @@ angular.module('app.data',[])
 
   // TEMP: display db data
   $scope.displayTable = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
     $http({
-      method: 'GET',
-      url: '/data'
+      method: 'POST',
+      url: '/data',
+      data: {username: username}
     })
     .then(function(resp) {
       $scope.tableGraph = resp.data; // temp, just to display server response
@@ -77,4 +80,4 @@ angular.module('app.data',[])
       $scope.tableDaily = resp.data;
     });
   }
-})
+}])

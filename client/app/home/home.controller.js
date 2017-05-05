@@ -19,7 +19,7 @@ angular.module('app.home',['ngMaterial'])
 // })
 
 
-.controller('homeController', function($scope, $http, $mdDialog) {
+.controller('homeController', ['$scope', '$http', '$mdDialog', 'AuthService',function($scope, $http, $mdDialog, AuthService) {
   //Menu controls
   var originatorEv;
     this.openMenu = function($mdMenu, ev) {
@@ -40,7 +40,9 @@ angular.module('app.home',['ngMaterial'])
   $scope.time = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours());
 
   $scope.submitInput = function() {
-    let username = $scope.username;
+    let username = AuthService.getUser();
+    console.log("My username is: ", username);
+    //let username = $scope.username;
     let level = parseInt($scope.options.level, 10);
     let time = $scope.time;
 
@@ -65,4 +67,4 @@ angular.module('app.home',['ngMaterial'])
   }
   originatorEv = null;
   // $scope.submitInput = postToServerFactory.postToServer();
- })
+ }])

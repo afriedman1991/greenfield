@@ -7,9 +7,9 @@ var aggregateLogs = Q.nbind(Log.aggregate, Log);
 
 module.exports = {
   //fatch data from database
-  allLogs: function (req, res, next) {
+  singleLogs: function (req, res, next) {
     console.log("Hello");
-    findAllLogs({})
+    findAllLogs({username: req.body.username})
     .then(function (logs) {
       res.json(logs);
     })

@@ -3,6 +3,7 @@ angular.module('app').factory('AuthService',
 	function($q, $timeout, $http) {
 		//create user variable
 		var user = null;
+		var getUserName = '';
 
 		//return available functions for use in the controllers
 		return ({
@@ -19,7 +20,7 @@ angular.module('app').factory('AuthService',
 			login: function(username, password) {
 				//create a new instance of deferred
 				var deferred = $q.defer();
-
+				getUserName = username;
 				$http.post('/login', {username: username, password: password})
 				//handle success
 				.then(function (data) {
@@ -77,6 +78,9 @@ angular.module('app').factory('AuthService',
 				});
 				//return promise object
 				return deferred.promise;
+			},
+			getUser: function() {
+				return getUserName;
 			}
 		});
 }]);
