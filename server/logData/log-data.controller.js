@@ -1,5 +1,6 @@
 var Q = require('q');
-var Log = require('./log-data.model.js')
+var Log = require('./log-data.model.js');
+var _ = require('underscore');
 
 var findAllLogs = Q.nbind(Log.find, Log);
 var createLog = Q.nbind(Log.create, Log);
@@ -75,6 +76,20 @@ module.exports = {
   },
 
   monthly: function(req, res, next) {
+    // aggregateLogs([
+    //   {
+    //     $group: {
+    //       _id: {
+    //         year: { $year: "$time" },
+    //         month: { $month: "$time" } ,
+    //         week: { $week: "$time" },
+    //         day: { $dayOfMonth: "$time" },
+    //
+    //       },
+    //       averageLevel: { $avg: "$level" }
+    //     }
+    //   }
+    // ])
     aggregateLogs([
       {
         $addFields: {
@@ -94,6 +109,91 @@ module.exports = {
       }
     ])
     .then(function(logs) {
+      // console.log('logging', logs);
+      // let sorted = _.sortBy(logs, elem => -elem.time);
+      // let data = _.groupBy(sorted, elem => elem.week);
+      //   // log_.groupBy(logs, time => time.week);
+      // console.log(data);
+      console.log(logs);
+      res.send(logs);
+    })
+    .fail(function(error) {
+      next(error);
+    });
+  },
+
+  dailyAverages: function(req, res, next) {
+    aggregateLogs([
+      {
+        $sort: {
+          time: 1
+        }
+      },
+      {
+        $addFields: {
+          year: { $year: "$time"}
+        }
+      },
+      {
+        $match: {
+          year: parseInt(req.params.year, 10)
+        }
+      },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$time" },
+            month: { $month: "$time" } ,
+            week: { $week: "$time" },
+            day: { $dayOfMonth: "$time" },
+
+          },
+          averageLevel: { $avg: "$level" },
+          times: { $push: "$$ROOT"},
+          levels: { $push: "$level"}
+        }
+      }
+    ])
+    .then(function(logs) {
+      console.log(logs);
+      res.send(logs);
+    })
+    .fail(function(error) {
+      next(error);
+    });
+  },
+
+  weeklyAverages: function(req, res, next) {
+    aggregateLogs([
+      {
+        $sort: {
+          time: 1
+        }
+      },
+      {
+        $addFields: {
+          year: { $year: "$time"}
+        }
+      },
+      {
+        $match: {
+          year: parseInt(req.params.year, 10)
+        }
+      },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$time" },
+            month: { $month: "$time" } ,
+            week: { $week: "$time" }
+          },
+          averageLevel: { $avg: "$level" },
+          times: { $push: "$$ROOT"},
+          // levels: { $push: "$level"}
+        }
+      },
+    ])
+    .then(function(logs) {
       console.log(logs);
       res.send(logs);
     })
@@ -102,3 +202,11 @@ module.exports = {
     });
   }
 }
+
+// different endpoints
+// the one that return all data given a month, day
+// those that return with averages
+  // monthly consists of ==> (year, month, week)
+  // weekly consists of ==> (year, month, week, day)
+// add fields when group by
+  // original time/level but can you?

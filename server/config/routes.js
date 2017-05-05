@@ -10,6 +10,8 @@ module.exports = function (app, express) {
   app.post('/signin', userDataController.signin);
   app.get('/data/:year/:month/:day', logDataController.daily);
   app.get('/data/:year/:month', logDataController.monthly);
+  app.get('/data/average/level/daily/:year', logDataController.dailyAverages);
+  app.get('/data/average/level/weekly/:year', logDataController.weeklyAverages);
 
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
