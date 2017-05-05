@@ -18,14 +18,14 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
   </head>
   <body >
-    <div id='container'layout="column" layout-align="center center" layout-padding="" ng-cloak="">
+    <div id='container'layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="superButton">
      <label layout="column" layout-align="center center" layout-padding="" ng-cloak="">Happiness Tracker</label>
       <md-content class="md-padding">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
           <md-nav-item md-nav-href="#!/home" name="home">Home</md-nav-item>
           <md-nav-item md-nav-href="#!/data" name="data">Data</md-nav-item>
-          <md-nav-item md-nav-href="#!/login" name="login">Login</md-nav-item>
-          <md-nav-item md-nav-href="#!/signup" name="signup">Sign up</md-nav-item>
+          <md-nav-item md-nav-href="#!/login" name="login" ng-hide="loginButton">Login</md-nav-item>
+          <md-nav-item md-nav-href="#!/signup" name="signup" ng-hide="signupButton">Sign up</md-nav-item>
           <md-nav-item md-nav-href="#!/text" name='text'>Text</<md-nav-item>
         </md-nav-bar>
       </md-content>
@@ -47,6 +47,6 @@
     <script src="./app/text/text.controller.js"></script>
 
     <script src="./app/service.js"></script>
-
+    <script src="index.controller.js"></script>
   </body>
 </html>
