@@ -1,6 +1,4 @@
 angular.module('app.home',['ngMaterial'])
-
-
 //may seperate controller and factory to adhere to the style guide
 
 // .factory("postToServerFactory",function($scope,$http){
@@ -33,11 +31,13 @@ angular.module('app.home',['ngMaterial'])
      level : null,
      availableLevels: [3, 2, 1, 0, -1, -2, -3],
      mood : null,
-     availableMoods: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
+     availableMoods: ['sentiment_very_dissatisfied', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_satisfied', 'sentiment_very_satisfied'],
+     word: null,
+     words: ['Content', 'So-so', 'Stressed', 'Upset', 'Motivated']
    };
 
   let currDate = new Date();
-  $scope.time = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate(), currDate.getHours());
+  $scope.time = new Date(currDate.getHours());
 
   $scope.submitInput = function() {
     let username = AuthService.getUser();
@@ -67,4 +67,6 @@ angular.module('app.home',['ngMaterial'])
   }
   originatorEv = null;
   // $scope.submitInput = postToServerFactory.postToServer();
+
  }])
+
