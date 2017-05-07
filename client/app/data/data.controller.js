@@ -30,7 +30,6 @@ angular.module('app.data',[])
      }
    };
 
-
     // JS Month is 0-11, MongoDB Month is 1-12
     // Need to add one month to query Mongo
     $scope.displayDaily = function() {
@@ -171,6 +170,7 @@ angular.module('app.data',[])
 
 
   $scope.displayDailyGraphs = function() {
+    $scope.dayTitle = "This Days's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -211,6 +211,7 @@ angular.module('app.data',[])
 
 
   $scope.displayWeeklyGraphs = function() {
+    $scope.weekTitle = "This Week's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -252,6 +253,7 @@ angular.module('app.data',[])
 
 
   $scope.displayMonthlyGraphs = function() {
+    $scope.monthTitle = "This Month's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -293,4 +295,5 @@ angular.module('app.data',[])
       $scope.monthlyGraphs = monthly;
     })
   }
+
 }])
