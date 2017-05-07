@@ -8,7 +8,6 @@ angular.module('app.data',[])
    $scope.monthToSearch = currTime.getMonth();
    $scope.dayToSearch = currTime.getDate();
 
-
    //angular charts options
    $scope.onClick = function (points, evt) {
      console.log(points, evt);
@@ -168,9 +167,60 @@ angular.module('app.data',[])
     })
   }
 
+  $scope.displayTodayGraphs = function() {
+    $scope.dayTitle = "Today's Data";
+    $scope.hideTodayGraph = false;
+    $scope.hideDayGraph = true;
+    $scope.hideWeekGraph = true;
+    $scope.hideMonthGraph = true;
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    $http({
+      method: 'POST',
+      url: `data/average/level/daily/${year}`,
+      data: { username: username }
+    })
+    .then(function(resp) {
+      console.log('DAILY', resp.data);
+
+      let daily = resp.data.sort( (a, b) => {
+        let aDate = new Date(a._id.year, a._id.month - 1, a._id.day);
+        let bDate = new Date(a._id.year, b._id.month - 1, b._id.day);
+        return bDate - aDate;
+      });
+
+      console.log('DAYsorted', daily);
+
+      for (var dayNum in daily ) {
+        let day = daily[dayNum];
+        day['day'] = new Date(day._id.year, day._id.month - 1, day._id.day);
+        day['justLevels'] = [];
+        day['justHours'] = [];
+
+        console.log('DAY', day);
+
+        day.times.forEach(hour => {
+          day['justLevels'].push(hour.level);
+          day['justHours'].push(moment(hour.time).format('ha'));
+        })
+      }
+
+      let currDay = daily.filter( day => {
+        if (day._id.day === currTime.getDate() && day._id.month === (currTime.getMonth() + 1) && day._id.year === currTime.getFullYear()) {
+          return true;
+        }
+      });
+
+      console.log('dailyGraphs', daily);
+      console.log('found day', currDay);
+      $scope.todayGraphs = currDay;
+    })
+  }
 
   $scope.displayDailyGraphs = function() {
-    $scope.dayTitle = "This Days's Data";
+    $scope.dayTitle = "Daily Data";
+    $scope.hideTodayGraph = true;
     $scope.hideDayGraph = false;
     $scope.hideWeekGraph = true;
     $scope.hideMonthGraph = true;
@@ -215,6 +265,7 @@ angular.module('app.data',[])
 
   $scope.displayWeeklyGraphs = function() {
     $scope.weekTitle = "This Week's Data";
+    $scope.hideTodayGraph = true;
     $scope.hideDayGraph = true;
     $scope.hideWeekGraph = false;
     $scope.hideMonthGraph = true;
@@ -260,6 +311,7 @@ angular.module('app.data',[])
 
   $scope.displayMonthlyGraphs = function() {
     $scope.monthTitle = "This Month's Data";
+    $scope.hideTodayGraph = true;
     $scope.hideDayGraph = true;
     $scope.hideWeekGraph = true;
     $scope.hideMonthGraph = false;
@@ -304,5 +356,4 @@ angular.module('app.data',[])
       $scope.monthlyGraphs = monthly;
     })
   }
-
 }])
