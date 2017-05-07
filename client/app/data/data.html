@@ -1,12 +1,32 @@
 <div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
+
   <h2>Your Data Graphs</h2>
-<h3>Data</h
-<div>
-  <button ng-click="displayTable()">
-    Display Table
-  </button><br>
-  {{ tableGraph }}
-  <br>
+
+  <!--  navigation between graphs -->
+  <div id='container' ng-cloak>
+    <md-content class="md-padding">
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-click="displayDaily()" name="today">Today</md-nav-item>
+        <md-nav-item md-nav-click="displayWeekly()" name="week">Week</md-nav-item>
+        <md-nav-item md-nav-click="displayMonthly()" name="month">Month</md-nav-item>
+      </md-nav-bar>
+    </md-content>
+  </div>
+
+
+  <!-- angular-charts chart -->
+  <h2>{{selectedData}}</h2>
+  <canvas id="line" width="{{width}}" chart-colors=['']
+    class="chart chart-line" chart-data="data"
+    chart-labels="labels" chart-series="series" chart-options="options"
+    chart-dataset-override="datasetOverride" chart-click="onClick">
+  </canvas>
+
+
+
+  <!-- <button ng-click="displayTable()">Display Table</button><br>
+  {{ tableGraph }}<br>
+
   <input type="number" ng-model='yearToSearch' placeholder="Year to Search"></input> year: {{ yearToSearch}}<br>
   <input type="number" ng-model='monthToSearch' placeholder="Month to Search"></input> month: {{ monthToSearch}}<br>
   <input type="number" ng-model='dayToSearch' placeholder="Day to Search"></input> day: {{ dayToSearch}}<br>
@@ -25,12 +45,12 @@
   </button><br>
   <div ng-repeat="day in dailyAverages">
     <div>{{day._id.month}}/{{day._id.day}}/{{day._id.year}} - Average Level: {{day.averageLevel}} </div>
-    <!-- <div ng-repeat="v in day.times | orderBy: 'time'"> -->
-    <!-- <canvas id="line" width="{{width}}"
+    <div ng-repeat="v in day.times | orderBy: 'time'">
+    <canvas id="line" width="{{width}}"
       class="chart chart-line" chart-data="day"
       chart-labels="labels" chart-series="series" chart-options="options"
       chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas> -->
+    </canvas>
     <div ng-repeat="v in day.times">
       {{ v.time | date: 'medium' }} - Level: {{ v.level }}
     </div><br>
@@ -88,31 +108,6 @@
       chart-dataset-override="datasetOverride" chart-click="onClick">
     </canvas>
     </div>
-  </div>
-  <br>
+  </div> -->
 
-  <!-- TEMP: navigation between graphs -->
-  <div id='container' ng-cloak>
-    <md-content class="md-padding">
-      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="#/today" name="today">Today</md-nav-item>
-        <md-nav-item md-nav-href="#/week" name="week">Week</md-nav-item>
-        <md-nav-item md-nav-href="#/home" name="month">Month</md-nav-item>
-      </md-nav-bar>
-    </md-content>
-  </div>
-
-  <h2>Today's Data</h2>
-  <!-- angular-charts chart -->
-  <canvas id="line" width={{width}}
-    class="chart chart-line" chart-data="data"
-    chart-labels="labels" chart-series="series" chart-options="options"
-    chart-dataset-override="datasetOverride" chart-click="onClick">
-  </canvas>
-
-  <!-- TEMP: display db data -->
-  <div>
-    <button ng-click="displayTable()">Display data from db</button></br>
-    {{ tableGraph }}
-  </div>
 </div>

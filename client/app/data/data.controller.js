@@ -1,17 +1,20 @@
 angular.module('app.data',[])
 
 .controller("dataController",['$scope', '$http', 'AuthService', 'moment', function($scope, $http, AuthService, moment) {
-  //console.log($scope.user.username)
-   // angular-charts data
-   $scope.labels = ["8:00", "9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00"];
-   $scope.series = ['Level'];
-   $scope.data = [
-     [0, 1, 1, 3, 0, -1, -3, -2, -2, 0, 1, 1, 3]
-   ];
+
+   //current date generator
+   let currTime = new Date();
+   $scope.yearToSearch = currTime.getFullYear();
+   $scope.monthToSearch = currTime.getMonth();
+   $scope.dayToSearch = currTime.getDate();
+
+
+   //angular charts options
    $scope.onClick = function (points, evt) {
      console.log(points, evt);
    };
    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+   $scope.width = window.innerWidth * 0.7;
    $scope.options = {
      responsive: false,
      maintainAspectRatio: false,
@@ -26,30 +29,12 @@ angular.module('app.data',[])
        ]
      }
    };
-  $scope.width = window.innerWidth * 0.7;
 
-  // TEMP: display db data
-  $scope.displayTable = function() {
-    var username = AuthService.getUser();
-    console.log("My username is: ", username);
-    $http({
-      method: 'POST',
-      url: '/data',
-      data: {username: username}
-    })
-    .then(function(resp) {
-      $scope.tableGraph = resp.data; // temp, just to display server response
-    });
-  }
-
-  let currTime = new Date();
-  $scope.yearToSearch = currTime.getFullYear();
-  $scope.monthToSearch = currTime.getMonth();
-  $scope.dayToSearch = currTime.getDate();
 
   // JS Month is 0-11, MongoDB Month is 1-12
   // Need to add one month to query Mongo
   $scope.displayDaily = function() {
+    $scope.selectedData = "This Day's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -65,10 +50,42 @@ angular.module('app.data',[])
     .then(function(resp) {
       console.log('resp is', resp.data);
       $scope.tableDaily = resp.data;
+
+      //temp hard coded data
+      $scope.labels = ['8:00', '9:00', '10:00', '11:00', '12:00pm', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00'];
+      $scope.data = [0,1,2,2,1,0,-2,-3,1,1,0,1,3,2,1];
     });
   }
 
+
+  //this function doesn't work
+  $scope.displayWeekly = function() {
+    $scope.selectedData = "This Week's Data";
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    let year = $scope.yearToSearch;
+    let month = $scope.monthToSearch + 1;
+    let day = $scope.dayToSearch;
+    $http({
+      method: 'POST',
+      url: `/data/${year}/${month}/${day}`,
+      // Doing below uses url: /data/?year=2017
+      // params: { year: $scope.yearToSearch}
+      data: {username: username}
+    })
+    .then(function(resp) {
+      console.log('resp is', resp.data);
+      $scope.tableDaily = resp.data;
+
+      //temp hard coded data
+      $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+      $scope.data = [0,-1,0,1,2,3,3];
+    });
+  }
+
+
   $scope.displayMonthly = function() {
+    $scope.selectedData = "This Month's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -97,10 +114,31 @@ angular.module('app.data',[])
       //   }
       // }
       // $scope.tableMonthly = test;
-
       $scope.tableMonthly = resp.data;
+
+      //temp hard coded data
+      $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      $scope.data = [0,2,3,2,0,-3,1,2,2,1,2,-3];
     });
   }
+
+
+
+
+  // TEMP: display db data
+  $scope.displayTable = function() {
+    var username = AuthService.getUser();
+    console.log("My username is: ", username);
+    $http({
+      method: 'POST',
+      url: '/data',
+      data: {username: username}
+    })
+    .then(function(resp) {
+      $scope.tableGraph = resp.data; // temp, just to display server response
+    });
+  }
+
 
   $scope.displayDailyAverages = function() {
     var username = AuthService.getUser();
