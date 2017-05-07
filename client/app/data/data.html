@@ -16,11 +16,27 @@
 
   <!-- angular-charts chart -->
   <h2>{{selectedData}}</h2>
-  <canvas id="line" width="{{width}}" chart-colors=['']
-    class="chart chart-line" chart-data="data"
+  <canvas id="line" width="{{width}}"
+    class="chart chart-line" chart-data="data" chart-colors=['']
     chart-labels="labels" chart-series="series" chart-options="options"
     chart-dataset-override="datasetOverride" chart-click="onClick">
   </canvas>
+
+
+  <!-- smart-table: just getting started resource: http://lorenzofox3.github.io/smart-table-website/#section-intro-->
+  <!-- <table st-table="rowCollection" class="table table-striped">
+  	<thead>
+  	<tr>
+  		<th>Time</th>
+  		<th>Data</th>
+  	</tr>
+  	</thead>
+  	<tbody>
+  	<tr ng-repeat="x in lables">
+  		<td>{{x}}</td>
+  	</tr>
+  	</tbody>
+  </table> -->
 
 
 

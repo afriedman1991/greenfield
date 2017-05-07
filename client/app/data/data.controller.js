@@ -31,9 +31,9 @@ angular.module('app.data',[])
    };
 
 
-  // JS Month is 0-11, MongoDB Month is 1-12
-  // Need to add one month to query Mongo
-  $scope.displayDaily = function() {
+    // JS Month is 0-11, MongoDB Month is 1-12
+    // Need to add one month to query Mongo
+    $scope.displayDaily = function() {
     $scope.selectedData = "This Day's Data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
@@ -123,8 +123,6 @@ angular.module('app.data',[])
   }
 
 
-
-
   // TEMP: display db data
   $scope.displayTable = function() {
     var username = AuthService.getUser();
@@ -155,6 +153,7 @@ angular.module('app.data',[])
     })
   }
 
+
   $scope.displayWeeklyAverages = function() {
     var username = AuthService.getUser();
     console.log("My username is: ", username);
@@ -169,6 +168,7 @@ angular.module('app.data',[])
       $scope.weeklyAverages = resp.data;
     })
   }
+
 
   $scope.displayDailyGraphs = function() {
     var username = AuthService.getUser();
@@ -209,6 +209,7 @@ angular.module('app.data',[])
     })
   },
 
+
   $scope.displayWeeklyGraphs = function() {
     var username = AuthService.getUser();
     console.log("My username is: ", username);
@@ -248,6 +249,7 @@ angular.module('app.data',[])
       $scope.weeklyGraphs = weekly;
     })
   },
+
 
   $scope.displayMonthlyGraphs = function() {
     var username = AuthService.getUser();
