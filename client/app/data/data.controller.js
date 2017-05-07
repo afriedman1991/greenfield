@@ -171,6 +171,9 @@ angular.module('app.data',[])
 
   $scope.displayDailyGraphs = function() {
     $scope.dayTitle = "This Days's Data";
+    $scope.hideDayGraph = false;
+    $scope.hideWeekGraph = true;
+    $scope.hideMonthGraph = true;
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -212,6 +215,9 @@ angular.module('app.data',[])
 
   $scope.displayWeeklyGraphs = function() {
     $scope.weekTitle = "This Week's Data";
+    $scope.hideDayGraph = true;
+    $scope.hideWeekGraph = false;
+    $scope.hideMonthGraph = true;
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -254,6 +260,9 @@ angular.module('app.data',[])
 
   $scope.displayMonthlyGraphs = function() {
     $scope.monthTitle = "This Month's Data";
+    $scope.hideDayGraph = true;
+    $scope.hideWeekGraph = true;
+    $scope.hideMonthGraph = false;
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
