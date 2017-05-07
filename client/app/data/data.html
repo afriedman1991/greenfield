@@ -1,7 +1,6 @@
 <div id='data' layout="column" layout-align="center center" layout-padding="" ng-cloak="" class="inputdemoIcons">
 
   <h2>Your Data Graphs</h2>
-
   <!--  navigation between graphs -->
   <div id='container' ng-cloak>
     <md-content class="md-padding">
@@ -13,7 +12,50 @@
     </md-content>
   </div>
 
-  <!-- angular-charts chart -->
+  <!-- Displays a day's data graphs -->
+  <div ng-hide=hideDayGraph>
+    <h2>{{dayTitle}}</h2>
+    <div ng-repeat="day in dailyGraphs">
+      <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
+      <canvas id="line" width="{{width}}" chart-colors=['#41f47a']
+        class="chart chart-line" chart-data="[day.justLevels]"
+        chart-labels="day.justHours" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+    </div>
+  </div>
+
+
+  <!-- Displays a weekly data graph -->
+  <div ng-hide=hideWeekGraph>
+    <h2>{{weekTitle}}</h2>
+    <div ng-repeat="(key, value) in weeklyGraphs" >
+      {{value.justDays[0]}} - {{value.justDays[value.justDays.length - 1]}}
+      <canvas id="line" width="{{width}}" chart-colors=['#f47641']
+        class="chart chart-line" chart-data="[value.justLevels]"
+        chart-labels="value.justDays" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+    </div>
+  </div>
+
+
+  <!-- Displays a month data graph -->
+  <div ng-hide=hideMonthGraph>
+    <h2>{{monthTitle}}</h2>
+    <div  ng-repeat="(key, value) in monthlyGraphs" >
+      {{ value.month | amDateFormat:'MMMM YYYY'}}
+      <canvas id="line" width="{{width}}" chart-colors=['#b749aa']
+        class="chart chart-line" chart-data="[value.justLevels]"
+        chart-labels="['Week 1', 'Week 2', 'Week 3', 'Week 4']" chart-series="series" chart-options="options"
+        chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+    </div>
+  </div>
+
+
+
+  <!-- angular-charts chart: used with displayDaily(), displayWeekly(), displayMonthly() -->
   <!-- <h2>{{selectedData}}</h2>
   <canvas id="line" width="{{width}}"
     class="chart chart-line" chart-data="data" chart-colors=['#424ef4']
@@ -21,40 +63,7 @@
     chart-dataset-override="datasetOverride" chart-click="onClick">
   </canvas> -->
 
-  <!-- Displays a day's data graphs -->
-  <h2>{{dayTitle}}</h2>
-  <div ng-repeat="day in dailyGraphs">
-    <div class="texting">{{day.day | amDateFormat:'dddd, MMM Do, YYYY'}}</div>
-    <canvas id="line" width="{{width}}" chart-colors=['#41f47a']
-      class="chart chart-line" chart-data="[day.justLevels]"
-      chart-labels="day.justHours" chart-series="series" chart-options="options"
-      chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas>
-  </div>
 
-
-  <!-- Displays a weekly data graph -->
-  <h2>{{weekTitle}}</h2>
-  <div ng-repeat="(key, value) in weeklyGraphs">
-    {{value.justDays[0]}} - {{value.justDays[value.justDays.length - 1]}}
-    <canvas id="line" width="{{width}}" chart-colors=['#f47641']
-      class="chart chart-line" chart-data="[value.justLevels]"
-      chart-labels="value.justDays" chart-series="series" chart-options="options"
-      chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas>
-  </div>
-
-
-  <!-- Displays a month data graph -->
-  <h2>{{monthTitle}}</h2>
-  <div ng-repeat="(key, value) in monthlyGraphs">
-    {{ value.month | amDateFormat:'MMMM YYYY'}}
-    <canvas id="line" width="{{width}}" chart-colors=['#b749aa']
-      class="chart chart-line" chart-data="[value.justLevels]"
-      chart-labels="['Week 1', 'Week 2', 'Week 3', 'Week 4']" chart-series="series" chart-options="options"
-      chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas>
-  </div>
 
   <!-- smart-table: just getting started resource: http://lorenzofox3.github.io/smart-table-website/#section-intro
   <table st-table="rowCollection" class="table table-striped">
