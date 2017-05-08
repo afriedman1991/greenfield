@@ -168,7 +168,7 @@ angular.module('app.data',[])
   }
 
   $scope.displayTodayGraphs = function() {
-    $scope.dayTitle = "Today's Data";
+    $scope.todayTitle = "Today's Data";
     $scope.hideTodayGraph = false;
     $scope.hideDayGraph = true;
     $scope.hideWeekGraph = true;
