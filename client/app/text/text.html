@@ -1,8 +1,9 @@
-<div ng-controller='textController'>
-  <form>
-    <input type="text" ng-model="message" placeholder="textToSend"/>
-    <input type="text" ng-model="phoneNumber" placeholder="phoneNumber"/>
-    <input type="submit" ng-click="sendText()"/>
-  </form>
-  <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller='textController'>
+<label class="pageTitle">send your friend a text!</label>
+ <form>
+   <input type="text" ng-model="message" placeholder="textToSend"/>
+   <input type="text" ng-model="phoneNumber" placeholder="phoneNumber"/>
+   <input type="submit" ng-click="sendText()" ng-click="saveText()"/>
+ </form>
+ <div ng-model="displayMessage" ng-repeat='message in displayMessage' >{{message}}</div>
 </div>

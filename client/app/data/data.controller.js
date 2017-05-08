@@ -32,7 +32,7 @@ angular.module('app.data',[])
     // JS Month is 0-11, MongoDB Month is 1-12
     // Need to add one month to query Mongo
     $scope.displayDaily = function() {
-    $scope.selectedData = "This Day's Data";
+    $scope.selectedData = "this day's data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -58,7 +58,7 @@ angular.module('app.data',[])
 
   //this function doesn't work
   $scope.displayWeekly = function() {
-    $scope.selectedData = "This Week's Data";
+    $scope.selectedData = "this week's data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
@@ -83,7 +83,7 @@ angular.module('app.data',[])
 
 
   $scope.displayMonthly = function() {
-    $scope.selectedData = "This Month's Data";
+    $scope.selectedData = "this month's data";
     var username = AuthService.getUser();
     console.log("My username is: ", username);
     let year = $scope.yearToSearch;
