@@ -22,6 +22,7 @@ angular.module('app.data',[])
    };
    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
    $scope.width = window.innerWidth * 0.5;
+   $scope.doughnutWidth = window.innerWidth * 0.35;
    $scope.options = {
      responsive: false,
      maintainAspectRatio: false,
