@@ -10,8 +10,12 @@
   margin-bottom: 20px;
 }
 
-md-content {
-  color: #ff0000;
+md-content.md-no-momentum {
+  background-color: transparent;
+}
+
+md-content.md-padding {
+  background-color: transparent;
 }
 
 .navigation {
@@ -23,7 +27,7 @@ md-content {
   left: 0;
   border-radius: 50%;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   z-index: 0;
   animation-direction: alternate;
 }
