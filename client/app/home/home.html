@@ -1,17 +1,84 @@
+<div id='login' layout="column" layout-align="center center" layout-padding="" ng-cloak="" ng-controller="homeController as ctrl">
+    <!-- <div class="menu-demo-container" layout-align="center center" layout="column">
+        <label>Mood</label>
+        <md-menu>
+          <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
+          <i class="material-icons">favorite_border</i>
+          </md-button>
+          <md-input-container class="md-icon-float md-block" name="moodSelect" ng-model='option.mood'>
+          <md-menu-content width="1" name='moodSelect' ng-model='options.mood'>
+            <md-menu-item ng-repeat='mood in options.availableMoods' value='{{mood}}'>
+              <md-button ng-click="submitInput()">
+                <i class="material-icons">{{mood}}</i>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div> -->
+     <div class="menu-demo-container" layout-align="center center" layout="column">
+      <md-input-container class="md-block" name="moodSelect" ng-model='options.mood' flex-gt-sm>
+            <label>Mood Level</label>
+            <md-select name='moodSelec' ng-model="options.mood">
+              <md-option ng-repeat='mood in options.availableMoods' value='{{mood}}'>
+                {{mood}}
+              </md-option>
+            </md-select>
+          </md-input-container>
 
-<div class="sumbitForm">
-  <form ng-controller="homeController" ng-submit="submitInput(); showSimpleToast()">
-    <input type="text" ng-model='username' placeholder="Username"></input> {{username}}
-        <label for='levelSelect'> Level: </label>
-        <select name='levelSelect' ng-model='options.level'>
-          <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
-        </select>
-          <br/>
-        <label for='moodSelect'> Mood: </label>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+          <div class="menu-demo-container" layout-align="center center" layout="column">
+              <label>Mood Level</label>
+              <md-menu>
+                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
+                <i class="material-icons">plus_one</i>
+                </md-button>
+                <md-menu-content width="1" name='levelSelect' ng-model='options.level'>
+                  <md-menu-item ng-repeat='level in options.availableLevels' value='{{level}}'>
+                    <md-button>
+                      {{level}}
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+            </div>
+<br>
+<br>
+            <!-- <label for='levelSelect'> Level: </label>
+            <select name='levelSelect' ng-model='options.level'>
+              <option ng-repeat='level in options.availableLevels' value='{{level}}'>{{level}}</option>
+            </select> -->
+        <!-- <label for='moodSelect'> Mood: </label>
         <select name='moodSelect' ng-model='options.mood'>
-          <option ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</option>
-        </select>
-    <label for="exampleInput">Pick a date and time:</label>
+          <option class='material-icons' ng-repeat='mood in options.availableMoods' value='{{mood}}'>{{mood}}</i></option>
+        </select> -->
+<br>
+<br>
+<br>
+        <div flex-gt-xs>
+      <label>Pick a Time and Date</label>
+      <input type="time" ng-model="time" />
+      <md-datepicker type="datetime-local" ng-model="time" min="2001-01-01" max="2019-12-31"></md-datepicker>
+      <div role="alert">
+        <span class="error" ng-show="myForm.input.$error.required">
+          Required!
+        </span>
+        <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
+      </div>
+    </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+      <!-- <i class="material-icons">access_time</i>
     <input type="datetime-local" id="exampleInput" name="input" ng-model="time" placeholder="yyyy-MM" min="2001-01-01T00:00:00" max="2019-12-31T00:00:00" />
       <div role="alert">
         <span class="error" ng-show="myForm.input.$error.required">
@@ -19,6 +86,12 @@
         </span>
         <span class="error" ng-show="myForm.input.$error.datetimelocal">Not a valid date!</span>
       </div>
+      <br>
+      <br> -->
+<br>
+<br>
+<br>
+      <div  layout="column" layout-align="center center" layout-padding="" ng-cloak="">
     <input type="submit"></input>
-  </form type="submit">
+  </div>
 </div>
